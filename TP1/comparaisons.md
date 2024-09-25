@@ -40,7 +40,7 @@ grade = 'A'
 ```
 ## 3. **Opérateurs :**
 ### C :
-En C, les opérateurs arithmétiques sont utilisés pour effectuer des opérations mathématiques. Les opérateurs logiques sont utilisés pour effectuer des opérations booléennes. Les opérateurs bit à bit sont utilisés pour effectuer des opérations sur les bits.
+En C, les opérateurs arithmétiques sont utilisés pour **effectuer des opérations mathématiques**. Les opérateurs logiques sont utilisés pour **effectuer des opérations booléennes**. Les opérateurs bit à bit sont utilisés pour **effectuer des opérations sur les bits**.
 #### Exemple :
 ```c
 int a = 10;
@@ -51,7 +51,7 @@ int e = a & b; // e = 0
 ```
 
 ### Python :
-En Python, les opérations sont effectuées de la même manière que en C. Les opérateurs arithmétiques sont utilisés pour effectuer des opérations mathématiques. Les opérateurs logiques sont utilisés pour effectuer des opérations booléennes. Les opérateurs bit à bit sont utilisés pour effectuer des opérations sur les bits.
+En Python, les opérations sont effectuées de la même manière que en C. Les opérateurs arithmétiques sont utilisés pour **effectuer des opérations mathématiques**. Les opérateurs logiques sont utilisés pour **effectuer des opérations booléennes**. Les opérateurs bit à bit sont utilisés pour **effectuer des opérations sur les bits**.
 #### Exemple :
 ```python
 a = 10
@@ -80,3 +80,32 @@ for i in range(10):
     print("i =", i)
 ```
 
+<!--Conversion et formatage : Compare les techniques de formatage et de conversion (comme la conversion en binaire) en C et Python, en mettant en évidence les différences entre les fonctions spécifiques en C et les f-strings en Python.--->
+
+## 5. **Conversion et formatage :**
+
+### C :
+En C, pour afficher un nombre en format binaire, nous devons utiliser des **tableaux pour stocker les bits**, car le langage ne fournit pas de type de données intégré pour les chaînes de caractères dynamiques. Nous utilisons une boucle pour diviser le nombre par 2 et stocker le reste (`0` ou `1`) dans un tableau. Ensuite, nous **affichons les bits dans l'ordre inverse en refaisant une boucle**.
+#### Exemple :
+```c
+int num = 10;
+int bin[32];
+int position_tab = 0;
+
+for (int num_compt = num ; num_compt > 0; num_compt /= 2){
+    bin[position_tab] = num_compt %2;
+    position_tab++;
+}
+```
+
+### Python :
+En Python, nous pouvons utiliser des **chaînes de caractères** pour construire la représentation binaire d'un nombre. Le langage permet une manipulation plus simple des chaînes, et nous pouvons utiliser une boucle pour obtenir les bits de manière similaire à C. Cependant, nous pouvons directement utiliser la syntaxe des `f-strings` pour un **affichage formaté**.
+#### Exemple :
+```python
+while num_compt > 0:
+        bin += str(num_compt % 2)
+        num_compt = num_compt // 2
+
+    bin = bin[::-1]
+    print(f"le binaire de {num} est : {bin}")
+```
