@@ -2,8 +2,6 @@
 * Affichage d'un triangle rectangle avec des boucles
 * auteur: Pierre MOLY
 * Exercice 1.6
-* https://www.geeksforgeeks.org/concatenating-two-strings-in-c/
-* https://www.developpez.net/forums/d2143872/c-cpp/c/debuter/vider-tableau-char-0-a/
 */
 
 #include <stdio.h>
