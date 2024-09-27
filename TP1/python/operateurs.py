@@ -4,9 +4,11 @@
 # Exercice 1.5
 
 def main():
+    # affectation des variables
     a = 16
     b = 3
 
+    # calculs et affichage des résultats
     calcul = a + b
     print("a + b = ", calcul)
 

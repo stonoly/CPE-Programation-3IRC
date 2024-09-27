@@ -8,6 +8,7 @@
 
 int main(){
 
+    // lecture des valeurs saisies par l'utilisateur
     int num1 = 14;
     int num2 = 6;
     char op;
@@ -15,6 +16,7 @@ int main(){
     scanf("%c", &op);
     int result;
 
+    // switch pour déterminer l'opération à effectuer
     switch (op){
     case '+':
         result = num1 + num2;
@@ -45,6 +47,8 @@ int main(){
         printf("Opération non valide\n");
         return 1;
     }
+
+    // affichage du résultat
     if (op ==  '~'){
         printf("L'operation mathématiqe %c%d = %d\n", op, num1, result);
     }

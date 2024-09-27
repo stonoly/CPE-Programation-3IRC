@@ -4,6 +4,7 @@
 # Exercice 1.4
 
 def main():
+    # affectation des variables
     integer = 3
     floater = 3.14
     string = "Python"
@@ -17,6 +18,7 @@ def main():
         "boolean": True,
     }
 
+    # affichage des variables
     print("Int :", integer)
     print("Float :", floater)
     print("String :", string)

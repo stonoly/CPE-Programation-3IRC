@@ -3,8 +3,10 @@
 * auteur: Pierre MOLY
 * Exercice 1.1
 */
-#include <stdio.h> // headers
+#include <stdio.h>
+
 int main() {
-printf("Bonjour le Monde !");
-return 0;
+    // affichage de Bonjour le Monde !
+    printf("Bonjour le Monde !");
+    return 0;
 }

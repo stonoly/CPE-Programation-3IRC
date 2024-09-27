@@ -6,6 +6,7 @@
 import sys
 
 def main():
+    # affichage de la taille des différents types
     print(sys.getsizeof(int))
     print(sys.getsizeof(float))
     print(sys.getsizeof(bool))
