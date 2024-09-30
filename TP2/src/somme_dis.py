@@ -41,6 +41,17 @@ if __name__ == "__main__":
 # - POP_BLOCK : termine le bloc de la boucle en cours lorsque la boucle est terminée.
 #--------------------------------------------------------------------------------------------------
 """
+1
+Examinez les instructions GET_ITER et FOR_ITER. Que font-elles ?
+GET_ITER : Cette instruction obtient un itérateur à partir de l'objet range(n).
+FOR_ITER : Récupère le prochain élément de l'itérateur et gère l'arrêt de la boucle lorsqu'il n'y a plus d'éléments.
+
+2
+Identifiez les instructions comme SETUP_LOOP et POP_BLOCK. Quel est leur rôle dans la gestion de la boucle ?
+SETUP_LOOP : Prépare la gestion de la boucle et la gestion des exceptions (comme une interruption de la boucle).
+POP_BLOCK : Enlève la boucle de la pile de contrôle une fois qu'elle est terminée.
+
+3
 Avec la boucle for : 
   3           0 RESUME                   0
 
@@ -69,9 +80,6 @@ Avec la boucle for :
 Moins de code de contrôle explicite, car l'itération est gérée par l'itérateur FOR_ITER.
 La gestion de l'itérateur simplifie le bytecode, ce qui peut conduire à des exécutions plus rapides dans certains cas.
 
-"""
-
-"""
 Avec la boucle while : 
  10           0 RESUME                   0
 
@@ -107,4 +115,5 @@ Avec la boucle while :
 
 La condition de boucle (i < n) doit être explicitement vérifiée à chaque itération avec COMPARE_OP.
 Bien que le code soit plus détaillé et moins optimisé, il offre plus de flexibilité pour des conditions de boucle complexes.
+
 """
