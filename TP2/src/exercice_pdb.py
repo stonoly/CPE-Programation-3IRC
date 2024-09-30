@@ -2,11 +2,12 @@ from typing import List
 
 def double_values(tableau: List[int]) -> None:
     for compteur in range(len(tableau)):
-        # Introduire une erreur : parfois multiplier par 3 au lieu de 2
-        if compteur % 2 == 0:
-            tableau[compteur] *= 2
-        else:
-            tableau[compteur] *= 3
+        #À chaque indice pair (compteur % 2 == 0), on multiplie par 2,
+        # mais à chaque indice impair, on multiplie par 3.
+        # La condition entraîne une multiplication par 3 pour les indices impairs.
+
+        # Correction : toujours multiplier par 2
+        tableau[compteur] *= 2
 
     return tableau
 
