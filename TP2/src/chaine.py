@@ -30,8 +30,11 @@ def str_concat(str1: str, str2: str) -> str:
 def main():
     # Demander à l'utilisateur de saisir une chaîne de caractères sans espace
     str = input("Entrez une chaîne de caractères sans espace: ")
+    copy_str = str_copy(str)
     # Afficher la longueur de la chaîne
     print("La longueur de la chaîne est : ", str_count(str))
+    # Copier la chaîne
+    print("La chaîne copiée est : ", copy_str)
     # Demander à l'utilisateur de saisir une deuxième chaîne de caractères sans espace
     str2 = input("Entrez une deuxième chaîne de caractères sans espace: ")
     # Afficher la chaîne concaténée
