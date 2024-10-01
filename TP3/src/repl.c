@@ -1,13 +1,57 @@
+/*https://stackoverflow.com/questions/2413418/how-to-programatically-convert-a-time-from-one-timezone-to-another-in-c*/
+
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
+#include <stdlib.h>
 
 /**
  * Programme qui simule un interpréteur de commandes simple.
  * Il lit les commandes utilisateur et les traite en fonction de leur contenu.
  */
 
+int afficher_aide(){
+    //Affiche l'aide
+    printf("Aide: \n");
+    printf("----------\n");
+    printf("echo <text>: affiche le texte\n");
+    printf("date: affiche la date\n");
+    printf("help: affiche l'aide\n");
+    printf("quit: quitte le programme\n");
+    printf("version: affiche la version du shell\n");
+    return 0;
+}
+
+int traiter_quit(){
+    //Quitte le programme
+    printf("Arrêt...\n");
+    return 0;
+}
+
+int afficher_version() 
+{
+    //Affiche la version du shell
+    char version = system("$SHELL --version");
+}
+
+//Structure pour stocker les commandes
+struct Programme{
+    char nom[25];
+    int fonction;
+};
+
 int main()
 {
+
+    struct Programme help = {"help", 1};
+    struct Programme quit = {"quit", 2};
+    struct Programme version = {"version", 3};
+
+    struct Programme programmes[3];
+    programmes[0] = help;
+    programmes[1] = quit;
+    programmes[2] = version;
+    
     int continuer = 1; // Variable pour contrôler la boucle principale
 
     // Boucle principale qui lit et traite les commandes utilisateur
@@ -24,12 +68,55 @@ int main()
         // Enlève le caractère de fin de ligne ajouté par fgets
         commande[strcspn(commande, "\n")] = 0;
 
+        // Variable pour stocker le numéro de la commande
+        int commande_int = 0;
+
+        for(int i = 0; i < sizeof(programmes) / sizeof(struct Programme); i++){
+            if (strcmp(programmes[i].nom, commande) == 0){
+                commande_int = programmes[i].fonction;
+            }
+        }
+
+        if (commande_int == 0)
+        {
+            printf("Commande non reconnue. Essayez 'help' pour afficher les commandes disponibles.\n");
+        }
+        else
+        {
+            switch (commande_int)
+            {
+            case 1:
+                afficher_aide();
+                break;
+            case 2:
+                return traiter_quit();
+                break;
+            case 3:
+                afficher_version();
+                break;
+            }
+        }
+        
+
+        /*
         // Traite la commande en fonction de son contenu
         if (strcmp(commande, "quit") == 0)
         {
-            // Quitte le programme si la commande est "quit"
-            printf("Arrêt...\n");
-            continuer = 0;
+            // Appelle la fonction traiter_quit
+            return traiter_quit();
+        }
+        // Traite la commande "date"
+        else if (strcmp(commande, "date") == 0)
+        {
+            // Affiche la date et l'heure actuelles
+            time_t localDate = time(NULL);
+            printf("%s", ctime(&localDate));
+        }
+        // Traite la commande "help"
+        else if (strcmp(commande, "help") == 0)
+        {
+            // Appelle la fonction afficher_aide
+            afficher_aide();
         }
         else if (strncmp(commande, "echo ", 5) == 0)
         {
@@ -46,8 +133,9 @@ int main()
         else
         {
             // Affiche un message d'erreur si la commande est inconnue
-            printf("Commande non reconnue. Essayez 'echo <text>' pour afficher du texte, ou tapez 'quit' pour quitter.\n");
+            printf("Commande non reconnue. Essayez 'echo <text>' pour afficher du texte. Essayez 'date' pour afficher la date, ou tapez 'quit' pour quitter.\n");
         }
+        */
 
         printf("\n"); // Saut de ligne après la sortie
     }
