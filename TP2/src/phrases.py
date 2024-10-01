@@ -1,6 +1,9 @@
 # Fichier: phrases.py
-# Programme permettant de rechercher une phrase dans un fichier
-# Auteur: [Ton nom]
+# Recherche de phrases dans un fichier
+# Auteur: Pierre MOLY / Maxence LERDA
+# https://www.tutorialspoint.com/python/file_readlines.htm
+# https://www.programiz.com/python-programming/methods/built-in/open
+# Exercice 2.6
 
 def main():
     # Demander à l'utilisateur de saisir le nom du fichier
@@ -9,31 +12,25 @@ def main():
     # Demander à l'utilisateur de saisir la phrase à rechercher
     search_phrase = input("Entrez la phrase que vous souhaitez rechercher : ")
 
-    try:
-        # Ouvrir le fichier en mode lecture
-        with open(filename, 'r', encoding='utf-8') as file:
-            lines = file.readlines()  # Lire le contenu du fichier ligne par ligne
+    try: # On tente d'ouvrir le fichier
+        file = open(filename, 'r')
+    
+        lines = file.readlines()  # Lire le contenu du fichier ligne par ligne
+        contains = False
+        print("\nRésultats de la recherche :")
 
-        # Initialiser un compteur pour les résultats
-        found = False
-
-        # Parcourir chaque ligne du fichier
-        for line_number, line in enumerate(lines, start=1):
-            # Compter le nombre d'occurrences de la phrase dans la ligne actuelle
-            count = line.count(search_phrase)
-
-            # Si la phrase est trouvée dans la ligne
-            if count > 0:
-                print(f"Ligne {line_number}, {count} fois")
-                found = True
-
-        # Si la phrase n'a été trouvée dans aucune ligne
-        if not found:
-            print("La phrase n'a pas été trouvée dans le fichier.")
+        for i, line in enumerate(lines): # On parcourt les lignes du fichier
+            if search_phrase in line: # Si la phrase est dans la ligne
+                contains = True # On met à True
+                count = line.count(search_phrase)
+                print(f"Phrase '{search_phrase}' {count} fois à la ligne {i + 1}")
+    
+        if not contains: # Si la phrase n'est pas dans le fichier
+            print(f"Le fichier ne contient pas la phrase {search_phrase}")
 
     except FileNotFoundError:
-        # Si le fichier n'existe pas ou n'est pas trouvé
-        print(f"Erreur : Le fichier '{filename}' n'existe pas.")
+        print("Le fichier n'existe pas")
+
 
 if __name__ == "__main__":
     main()
