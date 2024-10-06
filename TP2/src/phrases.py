@@ -1,9 +1,11 @@
 # Fichier: phrases.py
 # Recherche de phrases dans un fichier
 # Auteur: Pierre MOLY / Maxence LERDA
+# Exercice 2.6
+
+#Références:
 # https://www.tutorialspoint.com/python/file_readlines.htm
 # https://www.programiz.com/python-programming/methods/built-in/open
-# Exercice 2.6
 
 def main():
     # Demander à l'utilisateur de saisir le nom du fichier

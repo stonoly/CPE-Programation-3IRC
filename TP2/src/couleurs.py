@@ -2,6 +2,8 @@
 # Gestion des couleurs et comptage des occurrences
 # Auteur: Pierre MOLY / Maxence LERDA
 # Exercice 2.7
+
+# Références:
 # http://www.science-du-numerique.fr/comment-convertir-un-nombre-decimal-en-hexadecimal-en-python#:~:text=Pour%20convertir%20un%20nombre%20d%C3%A9cimal,repr%C3%A9sentant%20le%20nombre%20en%20hexad%C3%A9cimal.
 
 from random import randint

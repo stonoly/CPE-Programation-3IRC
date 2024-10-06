@@ -2,6 +2,8 @@
  * Recherche de phrases dans un fichier
  * Auteur: Pierre MOLY / Maxence LERDA
  * Exercice 2.6
+ * 
+ * Références :
  * https://koor.fr/C/cstring/strlen.wp
  * https://koor.fr/C/cstdio/fopen.wp
  * https://koor.fr/C/cstdio/fgets.wp

@@ -2,6 +2,8 @@
  * Recherche de phrases dans un fichier
  * Auteur: Pierre MOLY / Maxence LERDA
  * Exercice 2.7
+ * 
+ * Références :
  * https://koor.fr/C/cstdlib/rand.wp
  * https://stackoverflow.com/questions/12344814/how-to-print-unsigned-char-as-2-digit-hex-value-in-c
  */
