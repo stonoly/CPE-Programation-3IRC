@@ -34,6 +34,16 @@ int afficher_version()
     char version = system("$SHELL --version");
 }
 
+int traiter_echo(char text[1024]){
+    //Affiche le texte
+    printf("Echo: ");
+    for (int i = 5; text[i] != '\0'; i++)
+        {
+            printf("%c", text[i]);
+    }
+    return 0;
+}
+
 //Structure pour stocker les commandes
 struct Programme{
     char nom[25];
@@ -46,11 +56,13 @@ int main()
     struct Programme help = {"help", 1};
     struct Programme quit = {"quit", 2};
     struct Programme version = {"version", 3};
+    struct Programme echo = {"echo", 4};
 
-    struct Programme programmes[3];
+    struct Programme programmes[4];
     programmes[0] = help;
     programmes[1] = quit;
     programmes[2] = version;
+    programmes[3] = echo;
     
     int continuer = 1; // Variable pour contrôler la boucle principale
 
@@ -64,6 +76,13 @@ int main()
 
         // Lit la commande utilisateur et la stocke dans le buffer
         fgets(commande, sizeof(commande), stdin);
+        
+        for(int j = 0; j < sizeof(commande) / sizeof(char); j ++){
+            // Remplace les espaces par des caractères de fin de chaîne
+            if (commande[j] == ' '){
+                commande[j] = '\0';
+            }
+        }
 
         // Enlève le caractère de fin de ligne ajouté par fgets
         commande[strcspn(commande, "\n")] = 0;
@@ -77,13 +96,7 @@ int main()
             }
         }
 
-        if (commande_int == 0)
-        {
-            printf("Commande non reconnue. Essayez 'help' pour afficher les commandes disponibles.\n");
-        }
-        else
-        {
-            switch (commande_int)
+        switch (commande_int)
             {
             case 1:
                 afficher_aide();
@@ -94,10 +107,14 @@ int main()
             case 3:
                 afficher_version();
                 break;
+            case 4:
+                traiter_echo(commande);
+                break;
+            default:
+                printf("Commande non reconnue. Essayez 'help' pour afficher les commandes disponibles.\n");
+                break;
             }
-        }
-        
-
+    }
         /*
         // Traite la commande en fonction de son contenu
         if (strcmp(commande, "quit") == 0)
@@ -137,8 +154,7 @@ int main()
         }
         */
 
-        printf("\n"); // Saut de ligne après la sortie
-    }
+    printf("\n"); // Saut de ligne après la sortie
 
     return 0;
 }
