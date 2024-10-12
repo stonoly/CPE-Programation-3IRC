@@ -71,9 +71,9 @@ int erreur(char commande[1024]){
     int erreur_echo = 0;
 
     while (stop == 0) {
-        if (strncmp(&commande[compteur], echo, 4) == 0) { // Utilisation de strncmp pour comparer les 4 premiers caractères
-            compteur += 4; // Incrémentation correcte après avoir trouvé "echo"
-            if (commande[compteur] != ' ') { // Vérification de l'espace après "echo"
+        if (strncmp(&commande[compteur], echo, 4) == 0) {
+            compteur += 4;
+            if (commande[compteur] != ' ') {
                 stop = 1;
                 erreur_echo = 1;
             }
