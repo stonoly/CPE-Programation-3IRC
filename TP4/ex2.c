@@ -1,14 +1,14 @@
-/* Fichier: ex1.c
-* Parser l'expression en notation postfixée
+/* Fichier: ex2.c
+* Gérer les expressions avec parenthèses
 * Auteur: Pierre MOLY Maxence LERDA
-* Exercice 4.1
+* Exercice 4.2
 
 * https://koor.fr/C/cstring/strcspn.wp
 * https://code.quora.com/How-to-check-if-a-string-is-a-number-in-C#:~:text=If%20you%20want%20to%20check,and%20return%20zero%20if%20not.
 * https://koor.fr/C/cctype/isdigit.wp
 */
 
-#include "ex1.h"
+#include "ex2.h"
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -62,6 +62,24 @@ int main() {
             }
             // Ajouter un espace après chaque nombre
             strcat(exitString, " ");
+        }
+        // Si c'est une parenthèse ouvrante
+        else if(stringInfix[i] == '('){
+            // Empiler l'opérateur courant
+            pileOperator[positionOperator++] = stringInfix[i];
+            i++;
+        }
+        // Si c'est une parenthèse fermante
+        else if (stringInfix[i] == ')') {
+            while (positionOperator > 0 && pileOperator[positionOperator - 1] != '(') {
+                char op[2] = {pileOperator[--positionOperator], '\0'};
+                strcat(exitString, op);
+                strcat(exitString, " ");
+            }
+            if (positionOperator > 0) {
+                positionOperator--; // Enlever '('
+            }
+            i++;
         }
         // Si c'est un opérateur
         else if (isOperator(stringInfix[i])) {
