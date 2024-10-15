@@ -63,6 +63,9 @@ int main() {
             // Ajouter un espace après chaque nombre
             strcat(exitString, " ");
         }
+        //___________________________________________________________________________
+        // Code Ajouté
+        //___________________________________________________________________________
         // Si c'est une parenthèse ouvrante
         else if(stringInfix[i] == '('){
             // Empiler l'opérateur courant
@@ -71,16 +74,21 @@ int main() {
         }
         // Si c'est une parenthèse fermante
         else if (stringInfix[i] == ')') {
+            // Dépiler les opérateurs jusqu'à la parenthèse ouvrante
             while (positionOperator > 0 && pileOperator[positionOperator - 1] != '(') {
+                // Dépiler les opérateurs de plus haute ou égale priorité
                 char op[2] = {pileOperator[--positionOperator], '\0'};
+                // Ajouter à la sortie
                 strcat(exitString, op);
                 strcat(exitString, " ");
             }
+            // Dépiler la parenthèse ouvrante
             if (positionOperator > 0) {
-                positionOperator--; // Enlever '('
+                positionOperator--;
             }
             i++;
         }
+        //___________________________________________________________________________
         // Si c'est un opérateur
         else if (isOperator(stringInfix[i])) {
             // Comparer la priorité de l'opérateur actuel avec celui au sommet de la pile
