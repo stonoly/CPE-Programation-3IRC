@@ -1,3 +1,11 @@
+/* Fichier: ex3.c
+* Évaluer l'expression postfixée
+* Auteur: Pierre MOLY Maxence LERDA
+* Exercice 4.3
+*
+* https://www.geeksforgeeks.org/convert-string-to-int-in-c/
+*/
+
 #include "ex3.h"
 #include <stdio.h>
 #include <stdlib.h>
