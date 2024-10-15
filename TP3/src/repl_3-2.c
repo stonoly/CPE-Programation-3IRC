@@ -31,7 +31,8 @@ int traiter_quit(){
 int afficher_version() 
 {
     //Affiche la version du shell
-    char version = system("$SHELL --version");
+    printf("Version: 1.2\n");
+    return 0;
 }
 
 int traiter_echo(char text[1024]){
