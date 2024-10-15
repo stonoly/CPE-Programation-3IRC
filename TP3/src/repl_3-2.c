@@ -1,5 +1,5 @@
 /*https://stackoverflow.com/questions/2413418/how-to-programatically-convert-a-time-from-one-timezone-to-another-in-c*/
-
+#include "repl_3-2.h"
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -10,7 +10,7 @@
  * Il lit les commandes utilisateur et les traite en fonction de leur contenu.
  */
 
-int afficher_aide(){
+int afficher_aide(char text[1024]){
     //Affiche l'aide
     printf("Aide: \n");
     printf("----------\n");
@@ -19,20 +19,20 @@ int afficher_aide(){
     printf("help: affiche l'aide\n");
     printf("quit: quitte le programme\n");
     printf("version: affiche la version du shell\n");
-    return 0;
+    return 1;
 }
 
-int traiter_quit(){
+int traiter_quit(char text[1024]){
     //Quitte le programme
     printf("Arrêt...\n");
     return 0;
 }
 
-int afficher_version() 
+int afficher_version(char text[1024]) 
 {
     //Affiche la version du shell
     printf("Version: 1.2\n");
-    return 0;
+    return 1;
 }
 
 int traiter_echo(char text[1024]){
@@ -42,22 +42,16 @@ int traiter_echo(char text[1024]){
         {
             printf("%c", text[i]);
     }
-    return 0;
+    return 1;
 }
 
-//Structure pour stocker les commandes
-struct Programme{
-    char nom[25];
-    int fonction;
-};
 
 int main()
 {
-
-    struct Programme help = {"help", 1};
-    struct Programme quit = {"quit", 2};
-    struct Programme version = {"version", 3};
-    struct Programme echo = {"echo", 4};
+    struct Programme help = {"help", afficher_aide};
+    struct Programme quit = {"quit", traiter_quit};
+    struct Programme version = {"version", afficher_version};
+    struct Programme echo = {"echo", traiter_echo};
 
     struct Programme programmes[4];
     programmes[0] = help;
@@ -88,33 +82,14 @@ int main()
         // Enlève le caractère de fin de ligne ajouté par fgets
         commande[strcspn(commande, "\n")] = 0;
 
-        // Variable pour stocker le numéro de la commande
-        int commande_int = 0;
 
         for(int i = 0; i < sizeof(programmes) / sizeof(struct Programme); i++){
             if (strcmp(programmes[i].nom, commande) == 0){
-                commande_int = programmes[i].fonction;
+                continuer = programmes[i].fonction(commande);
+                
+
             }
         }
-
-        switch (commande_int)
-            {
-            case 1:
-                afficher_aide();
-                break;
-            case 2:
-                return traiter_quit();
-                break;
-            case 3:
-                afficher_version();
-                break;
-            case 4:
-                traiter_echo(commande);
-                break;
-            default:
-                printf("Commande non reconnue. Essayez 'help' pour afficher les commandes disponibles.\n");
-                break;
-            }
         
         printf("\n"); // Saut de ligne après la sortie
     }

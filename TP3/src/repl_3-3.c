@@ -1,6 +1,6 @@
 /*https://stackoverflow.com/questions/2413418/how-to-programatically-convert-a-time-from-one-timezone-to-another-in-c*/
 /*https://www.developpez.net/forums/d77539/c-cpp/c/conversion-d-caractere-minuscule*/
-
+#include "repl_3-3.h"
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -12,7 +12,7 @@
  * Il lit les commandes utilisateur et les traite en fonction de leur contenu.
  */
 
-int afficher_aide(char lang[3]){
+int afficher_aide(char text[1024], char lang[3]){
     //Affiche l'aide
     if (strcmp(lang, "fr") == 0){
         printf("Aide: \n");
@@ -32,10 +32,10 @@ int afficher_aide(char lang[3]){
         printf("quit: quit the program\n");
         printf("version: display the shell version\n");
     }
-    return 0;
+    return 1;
 }
 
-int traiter_quit(char lang[3]){
+int traiter_quit(char text[1024], char lang[3]){
     //Quitte le programme
     if (strcmp(lang, "fr") == 0){
         printf("Arrêt...\n");
@@ -46,21 +46,21 @@ int traiter_quit(char lang[3]){
     return 0;
 }
 
-int afficher_version() 
+int afficher_version(char text[1024], char lang[3]) 
 {
     //Affiche la version du shell
     printf("Version: 1.3\n");
-    return 0;
+    return 1;
 }
 
-int traiter_echo(char text[1024]){
+int traiter_echo(char text[1024], char lang[3]){
     //Affiche le texte
     printf("Echo: ");
     for (int i = 5; text[i] != '\0'; i++)
         {
             printf("%c", text[i]);
     }
-    return 0;
+    return 1;
 }
 
 int erreur(char commande[1024]){
@@ -91,25 +91,16 @@ int erreur(char commande[1024]){
 
     return 0;
 }
-
-//Structure pour stocker les commandes
-struct Programme{
-    char nom[25];
-    int fonction;
-    //Ajout de la langue
-    char lang[3];
-};
-
 int main()
 {
 
-    struct Programme help = {"help", 1, "en"};
-    struct Programme quit = {"quit", 2, "en"};
-    struct Programme version = {"version", 3, "all"};
-    struct Programme echo = {"echo", 4, "all"};
+    struct Programme help = {"help", "en", afficher_aide};
+    struct Programme quit = {"quit", "en", traiter_quit};
+    struct Programme version = {"version", "all", afficher_version};
+    struct Programme echo = {"echo", "all", traiter_echo};
     //Ajout des commandes en français
-    struct Programme aide = {"aide", 1, "fr"};
-    struct Programme quitter = {"quitter", 2, "fr"};
+    struct Programme aide = {"aide", "fr", afficher_aide};
+    struct Programme quitter = {"quitter", "fr", traiter_quit};
 
 
     struct Programme programmes[6];
@@ -145,36 +136,18 @@ int main()
         // Enlève le caractère de fin de ligne ajouté par fgets
         commande[strcspn(commande, "\n")] = 0;
 
-        // Variable pour stocker le numéro de la commande
-        int commande_int = 0;
-        char lang[3];
+        int error = 1;
 
         for(int i = 0; i < sizeof(programmes) / sizeof(struct Programme); i++){
             if (strcmp(programmes[i].nom, commande) == 0){
-                commande_int = programmes[i].fonction;
-                strcpy(lang, programmes[i].lang);
+                continuer = programmes[i].fonction(commande, programmes[i].lang);
+                error = 0;
             }
         }
+        if (error){
+            erreur(commande);
+        }
 
-        switch (commande_int)
-            {
-            case 1:
-                afficher_aide(lang);
-                break;
-            case 2:
-                return traiter_quit(lang);
-                break;
-            case 3:
-                afficher_version();
-                break;
-            case 4:
-                traiter_echo(commande);
-                break;
-            default:
-                erreur(commande);
-                break;
-            }
-        
         printf("\n"); // Saut de ligne après la sortie
     }
         /*
