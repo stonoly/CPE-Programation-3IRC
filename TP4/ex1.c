@@ -1,15 +1,29 @@
+/* Fichier: ex1.c
+* Parser l'expression en notation postfixée
+* Auteur: Pierre MOLY Maxence LERDA
+* Exercice 4.1
+
+* https://koor.fr/C/cstring/strcspn.wp
+* https://code.quora.com/How-to-check-if-a-string-is-a-number-in-C#:~:text=If%20you%20want%20to%20check,and%20return%20zero%20if%20not.
+* https://koor.fr/C/cctype/isdigit.wp
+*/
+
+#include "ex1.h"
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 
+// Fonction pour vérifier si un caractère est un opérateur
 int isOperator(char c) {
     return (c == '+' || c == '-' || c == '*' || c == '/');
 }
 
 // Fonction pour déterminer la priorité des opérateurs
-int precedence(char op) {
+int priority_operator(char op) {
+    // Priorité des opérateurs
     if (op == '*' || op == '/') {
         return 2;
+    // Priorité des opérateurs
     } else if (op == '+' || op == '-') {
         return 1;
     }
@@ -53,7 +67,7 @@ int main() {
         else if (isOperator(stringInfix[i])) {
             // Comparer la priorité de l'opérateur actuel avec celui au sommet de la pile
             while (positionOperator > 0 && 
-                   precedence(pileOperator[positionOperator - 1]) >= precedence(stringInfix[i])) {
+                   priority_operator(pileOperator[positionOperator - 1]) >= priority_operator(stringInfix[i])) {
                 // Dépiler les opérateurs de plus haute ou égale priorité
                 char op[2] = {pileOperator[--positionOperator], '\0'};
                 strcat(exitString, op);

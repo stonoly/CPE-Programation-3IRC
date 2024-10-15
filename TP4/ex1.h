@@ -1,13 +1,13 @@
-#ifndef ex1_h
-#define ex1_h
+#ifndef EX1_H
+#define EX1_H
 
-struct Element {
-    int value;
-    struct Element* next;
-};
+// Déclaration de la fonction pour convertir une expression infixée en postfixée
+void infixToPostfix(const char* infix, char* postfix);
 
-struct Pile {
-    struct Element* top;
-};
+// Déclaration de la fonction pour vérifier si un caractère est un opérateur
+int isOperator(char c);
 
-#endif
+// Déclaration de la fonction pour déterminer la priorité des opérateurs
+int priority_operator(char op);
+
+#endif // EX1_H
