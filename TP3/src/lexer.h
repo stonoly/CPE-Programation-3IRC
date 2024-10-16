@@ -1,24 +1,18 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-enum TokenTypes {
-    /* data */
-    INT,
-    FLOAT,
-    PLUS,
-    MINUS,
-    MULT,
-    DIV,
-    ERROR,
-    END
-};
+#define INTEGER 'i'
+#define FLOAT 'f'
+#define OPERATEUR 'o'
 
 struct Token {
-    enum TokenTypes type;
-    float value;
+    char type;
+    char value[100];
 };
 
-struct Token* tokenize(char* operation);
+struct Token* tokenize(char operation[1024], struct Token tokens[3]);
 
+// Déclaration de la fonction pour vérifier si un caractère est un opérateur
+int isOperator(char c);
 
 #endif
