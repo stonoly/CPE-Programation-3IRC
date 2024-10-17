@@ -22,4 +22,6 @@ Principes de Programmation
 ---
 
 N'hésitez pas à explorer les différents dossiers pour voir notre travail et notre évolution tout au long du cours.
+Ce travail a été réalisé à la sueur de notre front, et nous espérons qu'il vous sera utile pour vos propres projets.
+Et vous permettra d'éviter quelques nuits blanches comme celles que nous avons passées à coder.
 
