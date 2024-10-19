@@ -5,8 +5,8 @@
 #include "help.h"
 #include "version.h"
 #include "echo.h"
+#include "error.h"
 
-#include <string.h>
 #include <time.h>
 #include <stdlib.h>
 #include <ctype.h>
