@@ -6,6 +6,7 @@
 #include "version.h"
 #include "echo.h"
 #include "error.h"
+#include "operation.h"
 
 #include <time.h>
 #include <stdlib.h>

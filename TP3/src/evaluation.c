@@ -36,7 +36,7 @@ int evaluate(struct Operation operation){
             return 0;
         case DIV:
             if (operation.operand2 == 0){
-                printf("Division par 0 impossible\n");
+                printf("Division par 0 impossible\n\n");
                 return 1;
             }
             if (operation.floatResult == 1){

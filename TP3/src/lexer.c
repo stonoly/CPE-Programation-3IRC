@@ -19,7 +19,7 @@ struct Token* tokenize(char operation[1024], struct Token tokens[3]) {
         else{
             if (!isOperator(operation[i]) && (operation[i] < '0' || operation[i] > '9') && operation[i] != '.' && operation[i] != ' ') {
                 tokens[0].type = 'e';
-                printf("Erreur: caractère non autorisé '%c'\n", operation[i]);
+                printf("Erreur: caractère non autorisé '%c'\n\n", operation[i]);
                 return tokens;
             }
 
@@ -47,10 +47,6 @@ struct Token* tokenize(char operation[1024], struct Token tokens[3]) {
             }
             i++;
         }   
-    }
-
-    if (positionList != 3) {
-        tokens[0].type = 'e';
     }
 
     return tokens;

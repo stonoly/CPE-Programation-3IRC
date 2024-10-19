@@ -63,7 +63,7 @@ int traiter_echo(char text[1024], char lang[3]){
     return 1;
 }
 
-int erreur(char commande[1024]){
+int erreur(char commande[1024], int operation){
     int stop = 0;
     int compteur = 0;
     char echo[5] = "echo";

@@ -36,6 +36,8 @@ int main()
 
         // Lit la commande utilisateur et la stocke dans le buffer
         fgets(commande, sizeof(commande), stdin);
+        char commande_cpy[1024];
+        strcpy(commande_cpy, commande);
         
         for(int j = 0; j < sizeof(commande) / sizeof(char); j ++){
             commande[j] = tolower(commande[j]);
@@ -49,12 +51,17 @@ int main()
         commande[strcspn(commande, "\n")] = 0;
 
         int error = 1;
+        int comandefind = 0;
 
         for(int i = 0; i < sizeof(programmes) / sizeof(struct Programme); i++){
             if (strcmp(programmes[i].nom, commande) == 0){
                 continuer = programmes[i].fonction(commande, programmes[i].lang);
                 error = 0;
+                comandefind = 1;
             }
+        }
+        if (!comandefind){
+            error = operation(commande_cpy);
         }
         if (error){
             erreur(commande);
