@@ -21,6 +21,10 @@ char defineOperateur(char c){
 struct Operation parsing(struct Token* tokens, struct Operation operation){
     int firstOperand = 0;
     operation.floatResult = 0;
+    if (tokens[0].type == 'e'){
+        operation.operateur = ERROR;
+        return operation;
+    }
     for (int i = 0; i < 3; i++){
         if (tokens[i].type == INTEGER || tokens[i].type == FLOAT){
             if (tokens[i].type == FLOAT){

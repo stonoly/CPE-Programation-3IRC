@@ -14,8 +14,6 @@ int main(){
     struct Operation operationStruct;
     struct Operation returnedOperation = parsing(returnedTokens, operationStruct);
 
-    printf("Operation : %s", operation);
-
     int resultFinal = evaluate(returnedOperation);
     return resultFinal;
 }
