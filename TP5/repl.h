@@ -10,6 +10,7 @@
 #include "infixToPostFix.h"
 #include "postFixToResult.h"
 #include "variables.h"
+#include "lambda.h"
 
 #include <time.h>
 #include <stdlib.h>

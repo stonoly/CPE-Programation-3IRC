@@ -78,7 +78,10 @@ int main()
             }
         }
         if (!comandefind){
-            if (operation == 1){
+
+            if (isLambda(commande)) {
+                error = lambda(commande, variables, positionVariable);
+            } else if (operation == 1){
                 char postFix[100] = "";
                 error = infixToPostfix(commande_cpy, postFix);
                 if (!error){

@@ -19,4 +19,8 @@ int setVariables(char commande[1024], struct Variable variables[100], int positi
 
 void nameVariable(char commande[1024], char name[25]);
 
+int typeVariable(char valeur[100]);
+
+int searchVariable(char name[25], struct Variable variables[100], int positionVariable);
+
 #endif

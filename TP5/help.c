@@ -13,6 +13,7 @@ int afficher_aide(char text[1024], char lang[3]){
         printf("Vous pouvez aussi faire des operations aves les opérateurs +, -, *, / et des nombres entiers ou flottants, vous devez respecter la syntaxe A operateur B\n");
         printf("Vous pouver aussi faire des operations plus complexes en utilisant des parenthèses\n");
         printf("Vous pouvez aussi définir des variables avec le signe =, exemple: a = 5 et les afficher\n");
+        printf("Vous pouvez aussi faire des opérations lambda, exemple: (lambda x. x + 1) 5\n");
     }
     else{
         printf("Help: \n");
@@ -25,6 +26,7 @@ int afficher_aide(char text[1024], char lang[3]){
         printf("You can also do operations with the operators +, -, *, / and integers or floats, you must respect the syntax A operator B\n");
         printf("You can also do more complex operations using parentheses\n");
         printf("You can also define variables with the = sign, example: a = 5 and display them\n");
+        printf("You can also do lambda operations, example: (lambda x. x + 1) 5\n");
     }
     return 1;
 }
