@@ -1,4 +1,8 @@
-/*https://stackoverflow.com/questions/2413418/how-to-programatically-convert-a-time-from-one-timezone-to-another-in-c*/
+/* Fichier: repl_3-2.c
+ * Ajouter de nouvelles fonctionnalités à l'interpréteur de commandes, incluant les commandes aide et version, ainsi que des fonctions pour les traiter.
+ * Auteur: Pierre MOLY / Maxence LERDA
+ * Exercice 3.2
+ */
 #include "repl_3-2.h"
 #include <stdio.h>
 #include <string.h>
@@ -48,11 +52,13 @@ int traiter_echo(char text[1024]){
 
 int main()
 {
+    // Définition des structures Programme
     struct Programme help = {"help", afficher_aide};
     struct Programme quit = {"quit", traiter_quit};
     struct Programme version = {"version", afficher_version};
     struct Programme echo = {"echo", traiter_echo};
 
+    // Tableau de programmes
     struct Programme programmes[4];
     programmes[0] = help;
     programmes[1] = quit;
@@ -84,6 +90,7 @@ int main()
 
 
         for(int i = 0; i < sizeof(programmes) / sizeof(struct Programme); i++){
+            // Traite la commande en fonction de son contenu
             if (strcmp(programmes[i].nom, commande) == 0){
                 continuer = programmes[i].fonction(commande);
                 
@@ -93,6 +100,8 @@ int main()
         
         printf("\n"); // Saut de ligne après la sortie
     }
+
+    // ----------------- Ancien code -----------------
         /*
         // Traite la commande en fonction de son contenu
         if (strcmp(commande, "quit") == 0)
@@ -131,5 +140,6 @@ int main()
             printf("Commande non reconnue. Essayez 'echo <text>' pour afficher du texte. Essayez 'date' pour afficher la date, ou tapez 'quit' pour quitter.\n");
         }
         */
+       // ----------------- Ancien code -----------------
     return 0;
 }

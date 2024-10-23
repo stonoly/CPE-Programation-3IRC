@@ -1,5 +1,8 @@
-/*https://stackoverflow.com/questions/2413418/how-to-programatically-convert-a-time-from-one-timezone-to-another-in-c*/
-/*https://www.developpez.net/forums/d77539/c-cpp/c/conversion-d-caractere-minuscule*/
+/* Fichier: repl_3-3.c
+ * Ajouter le support des commandes en français à l'interpréteur de commandes, en plus des commandes en anglais.
+ * Auteur: Pierre MOLY / Maxence LERDA
+ * Exercice 3.3
+ */
 #include "repl_3-3.h"
 #include <stdio.h>
 #include <string.h>
@@ -13,7 +16,7 @@
  */
 
 int afficher_aide(char text[1024], char lang[3]){
-    //Affiche l'aide
+        //Affiche l'aide en français
     if (strcmp(lang, "fr") == 0){
         printf("Aide: \n");
         printf("----------\n");
@@ -24,6 +27,7 @@ int afficher_aide(char text[1024], char lang[3]){
         printf("version: affiche la version du shell\n");
     }
     else{
+        //Affiche l'aide en anglais
         printf("Help: \n");
         printf("----------\n");
         printf("echo <text>: display the text\n");
@@ -41,6 +45,7 @@ int traiter_quit(char text[1024], char lang[3]){
         printf("Arrêt...\n");
     }
     else{
+    //Quitte le programme en anglais
         printf("Exit...\n");
     }
     return 0;
@@ -56,6 +61,7 @@ int afficher_version(char text[1024], char lang[3])
 int traiter_echo(char text[1024], char lang[3]){
     //Affiche le texte
     printf("Echo: ");
+    // Imprime la chaîne
     for (int i = 5; text[i] != '\0'; i++)
         {
             printf("%c", text[i]);
@@ -64,14 +70,17 @@ int traiter_echo(char text[1024], char lang[3]){
 }
 
 int erreur(char commande[1024], int operation){
+    // Fonction qui affiche un message d'erreur si la commande n'est pas reconnue
     int stop = 0;
     int compteur = 0;
     char echo[5] = "echo";
     int erreur_echo = 0;
 
+    // Vérifie si la commande est "echo"
     while (stop == 0) {
         if (strncmp(&commande[compteur], echo, 4) == 0) {
             compteur += 4;
+            // Vérifie si la commande "echo" est suivie d'un espace
             if (commande[compteur] != ' ') {
                 stop = 1;
                 erreur_echo = 1;
@@ -82,9 +91,11 @@ int erreur(char commande[1024], int operation){
     }
     
     if (erreur_echo == 1) {
+        // Affiche un message d'erreur si la commande "echo" n'est pas suivie d'un espace
         printf("Error: the echo command must be followed by a space and the text to display.\n");
         printf("Erreur: la commande echo doit être suivie d'un espace et du texte à afficher.\n");
     }else {
+        // Affiche un message d'erreur si la commande n'est pas reconnue
         printf("Commande non reconnue. Essayez 'help' ou 'aide' pour afficher les commandes disponibles.\n");
         printf("Command not recognized. Try 'help' to display the available commands.\n");
     }
@@ -93,7 +104,7 @@ int erreur(char commande[1024], int operation){
 }
 int main()
 {
-
+    // Définition des structures Programme
     struct Programme help = {"help", "en", afficher_aide};
     struct Programme quit = {"quit", "en", traiter_quit};
     struct Programme version = {"version", "all", afficher_version};
@@ -102,7 +113,7 @@ int main()
     struct Programme aide = {"aide", "fr", afficher_aide};
     struct Programme quitter = {"quitter", "fr", traiter_quit};
 
-
+    // Tableau de programmes
     struct Programme programmes[6];
     programmes[0] = help;
     programmes[1] = quit;
@@ -136,20 +147,25 @@ int main()
         // Enlève le caractère de fin de ligne ajouté par fgets
         commande[strcspn(commande, "\n")] = 0;
 
+        // variable pour vérifier si la commande est reconnue
         int error = 1;
 
         for(int i = 0; i < sizeof(programmes) / sizeof(struct Programme); i++){
+            // Vérifie si la commande est reconnue
             if (strcmp(programmes[i].nom, commande) == 0){
+                // Appelle la fonction associée à la commande
                 continuer = programmes[i].fonction(commande, programmes[i].lang);
                 error = 0;
             }
         }
         if (error){
+            // Appelle la fonction erreur si la commande n'est pas reconnue
             erreur(commande);
         }
 
         printf("\n"); // Saut de ligne après la sortie
     }
+    // ----------------- Ancien code -----------------
         /*
         // Traite la commande en fonction de son contenu
         if (strcmp(commande, "quit") == 0)
@@ -188,5 +204,7 @@ int main()
             printf("Commande non reconnue. Essayez 'echo <text>' pour afficher du texte. Essayez 'date' pour afficher la date, ou tapez 'quit' pour quitter.\n");
         }
         */
+
+    // ----------------- Ancien code -----------------
     return 0;
 }

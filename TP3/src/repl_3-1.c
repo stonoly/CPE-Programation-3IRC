@@ -1,3 +1,8 @@
+/* Fichier: repl_3-1.c
+ * L'objectif du premier exercice est de comprendre le fonctionnement de l'interpréteur de commandes et de tester ses fonctionnalités.
+ * Auteur: Pierre MOLY / Maxence LERDA
+ * Exercice 3.1
+ */
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
