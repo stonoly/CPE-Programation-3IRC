@@ -69,7 +69,7 @@ int traiter_echo(char text[1024], char lang[3]){
     return 1;
 }
 
-int erreur(char commande[1024], int operation){
+int erreur(char commande[1024]){
     // Fonction qui affiche un message d'erreur si la commande n'est pas reconnue
     int stop = 0;
     int compteur = 0;

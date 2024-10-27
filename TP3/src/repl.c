@@ -1,11 +1,15 @@
-/*https://stackoverflow.com/questions/2413418/how-to-programatically-convert-a-time-from-one-timezone-to-another-in-c*/
-/*https://www.developpez.net/forums/d77539/c-cpp/c/conversion-d-caractere-minuscule*/
+/* Fichier: repl.c
+ * Créer un tokenizeur, un parseur et un évaluateur capable d'évaluer des expressions arithmétiques (A opération B)
+ * Auteur: Pierre MOLY / Maxence LERDA
+ * Exercice 3.4
+ */
 #include "repl.h"
 
 
 int main()
 {
 
+    // Définition des structures Programme
     struct Programme help = {"help", "en", afficher_aide};
     struct Programme quit = {"quit", "en", traiter_quit};
     struct Programme version = {"version", "all", afficher_version};
@@ -15,6 +19,7 @@ int main()
     struct Programme quitter = {"quitter", "fr", traiter_quit};
 
 
+    // Tableau de programmes
     struct Programme programmes[6];
     programmes[0] = help;
     programmes[1] = quit;
@@ -50,20 +55,25 @@ int main()
         // Enlève le caractère de fin de ligne ajouté par fgets
         commande[strcspn(commande, "\n")] = 0;
 
+        // variable pour vérifier si la commande est reconnue
         int error = 1;
         int comandefind = 0;
 
         for(int i = 0; i < sizeof(programmes) / sizeof(struct Programme); i++){
+            // Vérifie si la commande est reconnue
             if (strcmp(programmes[i].nom, commande) == 0){
+                // Appelle la fonction associée à la commande
                 continuer = programmes[i].fonction(commande, programmes[i].lang);
                 error = 0;
                 comandefind = 1;
             }
         }
         if (!comandefind){
+            // Appelle la fonction operation
             error = operation(commande_cpy);
         }
         if (error){
+            // Affiche un message d'erreur si la commande n'est pas reconnue
             erreur(commande);
         }
 
