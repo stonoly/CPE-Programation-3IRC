@@ -1,3 +1,8 @@
+/* Fichier: lambda.c
+ * Implémenter, parser et évaluer des expressions lambda
+ * Auteur: Pierre MOLY / Maxence LERDA
+ * Exercice 5.2
+ */
 #include "lambda.h"
 
 // Fonction pour vérifier si une commande commence par "(lambda x."
