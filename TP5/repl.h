@@ -1,6 +1,7 @@
 #ifndef REPL_H
 #define REPL_H
 
+// Inclusion des fichiers necessaires
 #include "quit.h"
 #include "help.h"
 #include "version.h"
@@ -12,10 +13,12 @@
 #include "variables.h"
 #include "lambda.h"
 
+// Inclusion des librairies
 #include <time.h>
 #include <stdlib.h>
 #include <ctype.h>
 
+// Définition de la structure Programme
 struct Programme{
     char nom[25];
     char lang[3];
