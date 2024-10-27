@@ -13,7 +13,7 @@
 * **Ex3:**
     * https://www.geeksforgeeks.org/convert-string-to-int-in-c/
 
-
+* ChatGPT (pour comprendre les consignes)
 
 # Difficulté
  * Dans l'exercice 1 Nous avons eu du mal à ne pas nous perdre dans le code de grande taille et de prendre en compte toutes les siatuations possibles. Il nous a fallu 4h pour le terminer. Par la suite cela a était plus simple de faire la suite.
