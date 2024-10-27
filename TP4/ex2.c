@@ -2,10 +2,6 @@
 * Gérer les expressions avec parenthèses
 * Auteur: Pierre MOLY Maxence LERDA
 * Exercice 4.2
-
-* https://koor.fr/C/cstring/strcspn.wp
-* https://code.quora.com/How-to-check-if-a-string-is-a-number-in-C#:~:text=If%20you%20want%20to%20check,and%20return%20zero%20if%20not.
-* https://koor.fr/C/cctype/isdigit.wp
 */
 
 #include "ex2.h"

@@ -1,11 +1,9 @@
-/*https://stackoverflow.com/questions/2413418/how-to-programatically-convert-a-time-from-one-timezone-to-another-in-c*/
-/*https://www.developpez.net/forums/d77539/c-cpp/c/conversion-d-caractere-minuscule*/
 #include "repl.h"
 
 
 int main()
 {
-
+    // Déclaration des commandes
     struct Programme help = {"help", "en", afficher_aide};
     struct Programme quit = {"quit", "en", traiter_quit};
     struct Programme version = {"version", "all", afficher_version};
@@ -15,6 +13,7 @@ int main()
     struct Programme quitter = {"quitter", "fr", traiter_quit};
 
 
+    // Tableau de commandes
     struct Programme programmes[6];
     programmes[0] = help;
     programmes[1] = quit;
@@ -36,6 +35,7 @@ int main()
 
         // Lit la commande utilisateur et la stocke dans le buffer
         fgets(commande, sizeof(commande), stdin);
+        // Copie de la commande pour la fonction echo
         char commande_cpy[1024];
         strcpy(commande_cpy, commande);
         
@@ -50,17 +50,23 @@ int main()
         // Enlève le caractère de fin de ligne ajouté par fgets
         commande[strcspn(commande, "\n")] = 0;
 
+        // Variable pour contrôler si la commande est valide
         int error = 1;
         int comandefind = 0;
 
+        // Parcours des commandes pour trouver la commande entrée par l'utilisateur
         for(int i = 0; i < sizeof(programmes) / sizeof(struct Programme); i++){
+            // Si la commande est trouvée
             if (strcmp(programmes[i].nom, commande) == 0){
+                // Appel de la fonction associée à la commande
                 continuer = programmes[i].fonction(commande, programmes[i].lang);
                 error = 0;
                 comandefind = 1;
             }
         }
+        // Si la commande n'est pas trouvée
         if (!comandefind){
+            // Si la commande est une opération mathématique
             char postFix[100] = "";
             error = infixToPostfix(commande_cpy, postFix);
             if (!error){
@@ -68,6 +74,7 @@ int main()
             }
         }
         if (error){
+            // Affiche un message d'erreur si la commande n'est pas valide
             erreur(commande);
 
         }

@@ -1,6 +1,7 @@
 #ifndef REPL_H
 #define REPL_H
 
+// Inclusion des fichiers nécessaires
 #include "quit.h"
 #include "help.h"
 #include "version.h"
@@ -10,10 +11,12 @@
 #include "infixToPostFix.h"
 #include "postFixToResult.h"
 
+// Inclusion des librairies nécessaires
 #include <time.h>
 #include <stdlib.h>
 #include <ctype.h>
 
+// Structure pour les commandes
 struct Programme{
     char nom[25];
     char lang[3];

@@ -11,7 +11,6 @@ int afficher_aide(char text[1024], char lang[3]){
         printf("quit: quitte le programme\n");
         printf("version: affiche la version du shell\n");
         printf("Vous pouvez aussi faire des operations aves les opérateurs +, -, *, / et des nombres entiers ou flottants, vous devez respecter la syntaxe A operateur B\n");
-        printf("Vous pouver aussi faire des operations plus complexes en utilisant des parenthèses\n");
     }
     else{
         printf("Help: \n");
@@ -22,7 +21,6 @@ int afficher_aide(char text[1024], char lang[3]){
         printf("quit: quit the program\n");
         printf("version: display the shell version\n");
         printf("You can also do operations with the operators +, -, *, / and integers or floats, you must respect the syntax A operator B\n");
-        printf("You can also do more complex operations using parentheses\n");
     }
     return 1;
 }
